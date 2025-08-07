@@ -1,0 +1,101 @@
+# 公共配置檔案
+spring:
+  application:
+    name: coderqa-backend
+  # 預設 dev 環境
+  profiles:
+    active: dev
+  # 支援 swagger3
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  # session 配置
+  session:
+    # todo 取消註解開啟分散式 session（須先配置 Redis）
+    # store-type: redis
+    # 30 天過期
+    timeout: 2592000
+  # 資料庫配置
+  # todo 需替換配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/coderqa
+    username: root
+    password: adminroot
+  # Redis 配置
+  # todo 需替換配置，然後取消註解
+  #  redis:
+  #    database: 1
+  #    host: localhost
+  #    port: 6379
+  #    timeout: 5000
+  #    password: 123456
+  # Elasticsearch 配置
+  # todo 需替換配置，然後取消註解
+  #  elasticsearch:
+  #    uris: http://localhost:9200
+  #    username: root
+  #    password: 123456
+  # 檔案上傳
+  servlet:
+    multipart:
+      # 大小限制
+      max-file-size: 10MB
+server:
+  address: 0.0.0.0
+  port: 8101
+  servlet:
+    context-path: /api
+    # cookie 30 天過期
+    session:
+      cookie:
+        max-age: 2592000
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全域邏輯刪除的實體欄位名稱
+      logic-delete-value: 1 # 邏輯已刪除值（預設為 1）
+      logic-not-delete-value: 0 # 邏輯未刪除值（預設為 0）
+# 微信相關
+wx:
+  # 微信公眾平台
+  # todo 需替換配置
+  mp:
+    token: xxx
+    aesKey: xxx
+    appId: xxx
+    secret: xxx
+    config-storage:
+      http-client-type: HttpClient
+      key-prefix: wx
+      redis:
+        host: 127.0.0.1
+        port: 6379
+      type: Memory
+  # 微信開放平台
+  # todo 需替換配置
+  open:
+    appId: xxx
+    appSecret: xxx
+# 物件儲存
+# todo 需替換配置
+cos:
+  client:
+    accessKey: xxx
+    secretKey: xxx
+    region: xxx
+    bucket: xxx
+# 接口文件配置
+knife4j:
+  enable: true
+  openapi:
+    title: "接口中心"
+    version: 1.0
+    group:
+      default:
+        api-rule: package
+        api-rule-resources:
+          - com.david.coderqa.controller

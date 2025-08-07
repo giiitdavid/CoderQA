@@ -1,0 +1,22 @@
+package generator.service.impl;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import generator.domain.Question;
+import generator.service.QuestionService;
+import generator.mapper.QuestionMapper;
+import org.springframework.stereotype.Service;
+
+/**
+* @author david
+* @description 针对表【question(題目)】的数据库操作Service实现
+* @createDate 2025-08-07 18:25:06
+*/
+@Service
+public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
+    implements QuestionService{
+
+}
+
+
+
+
